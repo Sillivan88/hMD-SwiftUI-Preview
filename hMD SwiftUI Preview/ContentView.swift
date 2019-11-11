@@ -49,7 +49,18 @@ struct VacationListCell: View {
 struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ContentView(vacations: testVacations)
+        Group {
+            ContentView(vacations: testVacations)
+                .previewDisplayName("Vacation list")
+            VacationListCell(vacation: testVacations[0])
+                .previewLayout(.sizeThatFits)
+                .previewDisplayName("Vacation cell")
+            ContentView(vacations: testVacations)
+                .environment(\.colorScheme, .dark)
+                .environment(\.sizeCategory, .extraExtraExtraLarge)
+                .previewDevice("iPhone SE")
+                .previewDisplayName("Vacation list on iPhone SE")
+        }
     }
     
 }
